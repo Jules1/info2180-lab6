@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick= myFunction()>Search</button>
+
+<script type="text/javascript">
+        function myFunction(){   
+            var ajaxRequest = new XMLHttpRequest();
+            ajaxRequest.onreadystatechange= function(){
+                if(ajaxRequest.readyState == 4){
+                    var display = document.getElementById('ajaxDisp');
+                    display.innerHTML = ajaxRequest.responseText;
+                    alert(ajaxRequest.responseText);
+                }
+                
+            }
+            
+            
+            ajaxRequest.open("GET", "request.php" + "?q=definition", true);
+            ajaxRequest.send(null);
+            
+        }
+</script>
+
+<div id= 'ajaxDisp'>Result here</div>
+</body>
+</html>
