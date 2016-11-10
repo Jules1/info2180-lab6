@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<button onclick= myFunction()>Search</button>
-
+    
 <script type="text/javascript">
         function myFunction(){   
+            var myStr = document.getElementById("word").value;
             var ajaxRequest = new XMLHttpRequest();
+            
             ajaxRequest.onreadystatechange= function(){
                 if(ajaxRequest.readyState == 4){
                     var display = document.getElementById('ajaxDisp');
                     display.innerHTML = ajaxRequest.responseText;
-                    alert(ajaxRequest.responseText);
                 }
                 
             }
             
-            
-            ajaxRequest.open("GET", "request.php" + "?q=definition", true);
-            ajaxRequest.send(null);
+            ajaxRequest.open("GET", "request.php?q=" + myStr, true);
+            ajaxRequest.send();
             
         }
-</script>
-
+</script>    
+    
+    
+    
+<body>
+<h1> Web Dictionary</h1>
+<form name = "myForm">  
+        <input type = "text" id = "word"/> 
+        <input type = "button" onclick = "myFunction()" value = "Search Word"/>
+</form>
+<h1>Result</h1>
 <div id= 'ajaxDisp'>Result here</div>
 </body>
 </html>
